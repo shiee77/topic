@@ -7,7 +7,7 @@ import com.sang.topic.common.constants.ResultConstants;
 import com.sang.topic.common.entity.User;
 import com.sang.topic.common.exception.ResultException;
 import com.sang.topic.common.model.Page;
-import com.sang.topic.dao.UserRepository;
+import com.sang.topic.repository.UserRepository;
 import com.sang.topic.service.UserService;
 import com.sang.topic.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;

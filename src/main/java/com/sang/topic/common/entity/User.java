@@ -1,23 +1,21 @@
 package com.sang.topic.common.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "user")
-@JsonIgnoreProperties(value={"password"})
+@Document
 public class User {
-    @Id
-    @GeneratedValue
-    private Integer id;
 
-    @Column(nullable = false)
+
+
+    @Id
+    private String  id;
+
     private String username;
 
-    @Column(nullable = false)
     private String password;
 
     private String email;
@@ -26,15 +24,20 @@ public class User {
 
     private String photo;
 
-    @Column(nullable = false)
     private Integer roleId;
 
-    @Column(nullable = false)
     private Integer available;
 
-    @Column(columnDefinition = "timestamp default '0000-00-00 00:00:00'")
     private Date createTime;
 
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public Date getCreateTime() {
         return createTime;
     }
@@ -43,13 +46,6 @@ public class User {
         this.createTime = createTime;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

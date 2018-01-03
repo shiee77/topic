@@ -1,35 +1,40 @@
 package com.sang.topic.common.entity;
 
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "topic")
+@Document
 public class Topic {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private Integer available;
 
-    @Column(nullable = false)
     private Integer parentId;
 
     private String parentIds;
 
-    @Column(nullable = false)
     private Integer orderType;
 
-    @Column(nullable = false)
     private Integer pageType;
 
     private Integer secNav;
 
     private String postShowTypes;
+
+    private Integer levelId;
+
+    public Integer getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(Integer levelId) {
+        this.levelId = levelId;
+    }
 
     public Integer getSecNav() {
         return secNav;
@@ -48,7 +53,7 @@ public class Topic {
     }
 
     public boolean isRoot() {
-        return this.id == 1;
+        return this.levelId == 1;
     }
 
     public Integer getPageType() {
@@ -83,11 +88,11 @@ public class Topic {
         this.parentId = parentId;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

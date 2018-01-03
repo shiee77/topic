@@ -1,47 +1,38 @@
 package com.sang.topic.common.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "post")
+@Document
 public class Post {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
-    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
     private Integer userId;
 
-    @Column(nullable = false)
     private Integer topicId;
 
-    @Column(nullable = false)
     private Integer available;
 
-    @Column(nullable = false)
     private String username;
 
-    @Column(columnDefinition = "integer default 0", nullable = false)
     private Integer commentNumber;
 
-    @Column(columnDefinition = "timestamp default '0000-00-00 00:00:00'", nullable = false)
     private Date createTime;
 
-    @Column(columnDefinition = "timestamp default CURRENT_TIMESTAMP", nullable = false)
     private Date updateTime;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
