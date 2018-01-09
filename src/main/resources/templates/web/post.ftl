@@ -37,9 +37,14 @@
 		<ul class="list-group">
             <#list comments as comment>
 				<li class="list-group-item">
-					#${comment.floor} - <a href="${basePath}/u/${comment.userId}">${comment.username}</a>:
-					发表时间：${comment.createTime?string("yyyy-MM-dd HH:mm:ss")}
+					#${comment.floor} - <a href="${basePath}/u/${comment.userId}">${comment.username}</a>
+					<#if comment.parent?? && comment.parentUserName??> 回复 <a href="${basePath}/u/${comment.parentUserId}">${comment.parentUserName}</a> </#if>
+
 					<div class="pre">${comment.content}</div>
+
+					<div style="text-align: left;">
+                        发表时间：${comment.createTime?string("yyyy-MM-dd HH:mm:ss")}
+					</div>
                     <div  class="tools" style="text-align: right;  ">
 						<#if Session.sessionUser??>
                             <button type="button" class="btn btn-default btn-sm" onclick="topicComment('${postId}','${comment.id}','回复','topicCommentRe')">回复

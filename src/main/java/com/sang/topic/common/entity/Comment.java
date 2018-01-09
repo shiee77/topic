@@ -28,6 +28,26 @@ public class Comment {
 
     private String parent ;
 
+    private String parentUserId;
+
+    private String parentUserName;
+
+    public String getParentUserId() {
+        return parentUserId;
+    }
+
+    public void setParentUserId(String parentUserId) {
+        this.parentUserId = parentUserId;
+    }
+
+    public String getParentUserName() {
+        return parentUserName;
+    }
+
+    public void setParentUserName(String parentUserName) {
+        this.parentUserName = parentUserName;
+    }
+
     public String getParent() {
         return parent;
     }

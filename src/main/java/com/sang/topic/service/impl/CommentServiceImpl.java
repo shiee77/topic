@@ -67,6 +67,8 @@ public class CommentServiceImpl implements CommentService {
         //如果是回复而不是评论,则添加对应的上级信息
         if(commentRe != null && !StringUtils.isEmpty(commentRe.getId())){
             comment.setParent(commentRe.getId());
+            comment.setParentUserId(commentRe.getUserId());
+            comment.setParentUserName(commentRe.getUsername());
         }
         postService.save(post);
         return commentRepository.save(comment);
