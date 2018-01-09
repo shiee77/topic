@@ -29,7 +29,7 @@ public class Post {
 
     private Date updateTime;
 
-    public String getId() {
+    public String getId() { 
         return id;
     }
 

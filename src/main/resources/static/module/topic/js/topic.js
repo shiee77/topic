@@ -95,7 +95,7 @@ function topicPost(topicId) {
             </div>\
             <div class="form-group">\
                 <label for="">内容</label>\
-                <textarea name="content" class="form-control" rows="5"></textarea>\
+                <textarea name="content" class="form-control form-content" rows="5"></textarea>\
             </div>\
         </form>\
         ';
@@ -106,6 +106,9 @@ function topicPost(topicId) {
 
 function doTopicPost() {
     var url = basePath + "/rest/p";
+    var str = $("#postForm").find(".form-content").val();
+    str = str.replace(/\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+    $("#postForm").find(".form-content").val(str);
     $.post(url, $("#postForm").serialize(), function (result) {
         if (result.status == 0) {
             topicAlert({
@@ -157,6 +160,10 @@ function topicComment(postId,commentId,title,modalId) {
 
 function doTopicComment() {
     var url = basePath + "/rest/c";
+    debugger;
+    var str = $("#commentForm").find(".form-control").val();
+    str = str.replace(/\n/g,"<br/>").replace(/\s/g,"&nbsp;");
+    $("#commentForm").find(".form-control").val(str);
     $.post(url, $("#commentForm").serialize(), function (result) {
         if (result.status == 0) {
             topicAlert({
