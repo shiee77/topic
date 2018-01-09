@@ -18,21 +18,45 @@ public class IndexController {
     @Autowired
     TopicService topicService;
 
+    /**
+        @author : liujx
+        @description : 登录
+        @date : Create in 下午8:47 2018/1/7
+
+    **/
     @GetMapping("/login")
     public ModelAndView login() {
         return new ModelAndView("web/login");
     }
 
+    /**
+        @author : liujx
+        @description : 注册
+        @date : Create in 下午8:47 2018/1/7
+
+    **/
     @GetMapping("/register")
     public ModelAndView register() {
         return new ModelAndView("web/register");
     }
 
+    /**
+        @author : liujx
+        @description : 进入首页
+        @date : Create in 下午8:47 2018/1/7
+
+    **/
     @GetMapping("")
     public ModelAndView index(Map<String, Object> model, Page page) {
         return new ModelAndView("web/index");
     }
 
+    /**
+        @author : liujx
+        @description : 错误400进入
+        @date : Create in 下午8:48 2018/1/7
+
+    **/
     @RequestMapping("/400")
     public ModelAndView error400(Map<String, Object> model){
         model.put("status", 400);
@@ -40,6 +64,12 @@ public class IndexController {
         return new ModelAndView("error");
     }
 
+    /**
+        @author : liujx
+        @description : 错误404进入
+        @date : Create in 下午8:48 2018/1/7
+
+    **/
     @RequestMapping("/404")
     public ModelAndView error404(Map<String, Object> model){
         model.put("status", 404);
@@ -47,6 +77,12 @@ public class IndexController {
         return new ModelAndView("error");
     }
 
+    /**
+        @author : liujx
+        @description : 错误500进入
+        @date : Create in 下午8:48 2018/1/7
+
+    **/
     @RequestMapping("/500")
     public ModelAndView error500(Map<String, Object> model){
         model.put("status", 500);

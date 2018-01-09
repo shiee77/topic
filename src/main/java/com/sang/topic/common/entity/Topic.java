@@ -1,6 +1,7 @@
 package com.sang.topic.common.entity;
 
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Topic {
 
     private Integer available;
 
-    private Integer parentId;
+    private String parentId;
 
     private String parentIds;
 
@@ -46,6 +47,14 @@ public class Topic {
 
     public String getPostShowTypes() {
         return postShowTypes;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public void setPostShowTypes(String postShowTypes) {
@@ -80,13 +89,6 @@ public class Topic {
         this.parentIds = parentIds;
     }
 
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
 
     public String getId() {
         return id;

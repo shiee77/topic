@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-//@JsonIgnoreProperties(value = {"id"})
 public class TreeView {
-    private Integer id;
+    private String id;
     private String text;
     private List<TreeView> nodes;
 
-    public void addNode(String paths, Integer id, String text) {
-        List<Integer> list = new LinkedList<>(TopicStringUtils.toIntegerList(paths));
+    public void addNode(String paths, String id, String text) {
+        List<String> list = new LinkedList<>(TopicStringUtils.toStringList(paths));
         list.remove(0);
         TreeView node = findNode(this, list);
         node.setId(id);
@@ -28,11 +27,11 @@ public class TreeView {
         return childNode;
     }
 
-    private static TreeView findNode(TreeView node, List<Integer> paths) {
+    private static TreeView findNode(TreeView node, List<String> paths) {
         if (paths.isEmpty()) {
             return addNode(node);
         }
-        Integer pathId = paths.remove(0);
+        String pathId = paths.remove(0);
         if (node.nodes != null) {
             for (TreeView n : node.nodes) {
                 if (pathId.equals(n.getId())) {
@@ -43,11 +42,11 @@ public class TreeView {
         return findNode(addNode(node), paths);
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

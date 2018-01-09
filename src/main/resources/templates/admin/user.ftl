@@ -29,7 +29,7 @@
                         </#if>
 						</select>
 					</td>
-					<td>${user.createTime}</td>
+					<td>${user.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
 					<td>
 						<button class="btn btn-sm btn-primary" onclick="showUserDetail(${user.id})">查看详情</button>
 					</td>

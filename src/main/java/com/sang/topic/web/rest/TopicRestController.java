@@ -22,7 +22,7 @@ public class TopicRestController {
     PostService postService;
 
     @GetMapping("/{topicId}")
-    public Result get(@PathVariable Integer topicId) throws ResultException {
+    public Result get(@PathVariable String topicId) throws ResultException {
         Topic topic = topicService.get(topicId);
         List<Topic> topics = topicService.getChildren(topicId);
         return Result.success().add("topic", topic)
@@ -30,7 +30,7 @@ public class TopicRestController {
     }
 
     @GetMapping("/{topicId}/p")
-    public Result getPosts(@PathVariable Integer topicId, Page page) {
+    public Result getPosts(@PathVariable String topicId, Page page) {
         List<Post> posts = postService.getByTopicId(topicId, page);
         return Result.success()
                 .add("posts", posts)
@@ -38,7 +38,7 @@ public class TopicRestController {
     }
 
     @PostMapping("")
-    public Result add(String name, Integer parentId) throws ResultException {
+    public Result add(String name, String parentId) throws ResultException {
         Topic topic = topicService.add(name, parentId);
         return Result.success().add("topic", topic);
     }

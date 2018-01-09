@@ -12,11 +12,11 @@ import java.util.List;
 public interface PostService {
     List<Post> getAll(Page page);
 
-    List<Post> getByTopicId(Integer topicId, Page page);
+    List<Post> getByTopicId(String topicId, Page page);
 
-    Post get(Integer id) throws ResultException;
+    Post get(String id) throws ResultException;
 
-    Post add(String title, String content, Integer TopicId, User user) throws ResultException;
+    Post add(String title, String content, String TopicId, User user) throws ResultException;
 
     @Transactional
     Post save(Post post);

@@ -25,8 +25,14 @@ public class PostController {
     @Autowired
     CommentService commentService;
 
+    /**
+        @author : liujx
+        @description : 帖子详情页进入位置
+        @date : Create in 下午8:58 2018/1/7
+
+    **/
     @GetMapping("/{postId}")
-    public ModelAndView post(@PathVariable Integer postId, Page page, Map<String, Object> model) throws ResultException {
+    public ModelAndView post(@PathVariable String postId, Page page, Map<String, Object> model) throws ResultException {
         Post post = postService.get(postId);
         model.put("post", post);
         model.put("comments", commentService.getByPostIdAndPage(postId, page));

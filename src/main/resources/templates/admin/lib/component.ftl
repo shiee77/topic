@@ -3,14 +3,14 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Topic2控制台</title>
+	<title>Topic控制台</title>
 
 	<link href="${basePath}/module/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${basePath}/module/AdminLTE/css/AdminLTE.min.css" rel="stylesheet">
+	<link href="${basePath}/module/AdminLTE/css/font-awesome.min.css" rel="stylesheet">
 	<link href="${basePath}/module/AdminLTE/css/skins/_all-skins.min.css" rel="stylesheet">
 	<link href="${basePath}/module/bootstrap-treeview/bootstrap-treeview.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="/module/AdminLTE/css/ionicons.min.css">
 
 	<script src="${basePath}/module/jquery/jquery-2.2.3.min.js"></script>
 	<script src="${basePath}/module/jquery.cookie/jquery.cookie.js"></script>
@@ -153,6 +153,5 @@
 <footer class="main-footer">
 	<div class="pull-right hidden-xs">
 	</div>
-	<strong>sggzh &copy; 2016 <a href="https://github.com/sggzh/topic2">Github</a></strong>.
 </footer>
 </#macro>

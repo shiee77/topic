@@ -17,9 +17,15 @@ public class CommentRestController {
     @Autowired
     CommentService commentService;
 
+    /**
+        @author : liujx
+        @description : 发表回复信息
+        @date : Create in 上午10:13 2018/1/8
+
+    **/
     @PostMapping("")
-    public Result add(HttpServletRequest request, Integer postId, String content) throws ResultException {
-        Comment comment = commentService.add(content, postId, SessionUtil.getUser(request));
+    public Result add(HttpServletRequest request, String postId, String commentId, String content) throws ResultException {
+        Comment comment = commentService.add(content, postId, commentId, SessionUtil.getUser(request));
         return Result.success().add("comment", comment);
     }
 }

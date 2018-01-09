@@ -1,5 +1,6 @@
 package com.sang.topic.common.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
@@ -14,9 +15,9 @@ public class Post {
 
     private String content;
 
-    private Integer userId;
+    private String userId;
 
-    private Integer topicId;
+    private String topicId;
 
     private Integer available;
 
@@ -52,19 +53,19 @@ public class Post {
         this.content = content;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Integer getTopicId() {
+    public String getTopicId() {
         return topicId;
     }
 
-    public void setTopicId(Integer topicId) {
+    public void setTopicId(String topicId) {
         this.topicId = topicId;
     }
 

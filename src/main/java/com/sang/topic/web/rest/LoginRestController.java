@@ -19,6 +19,12 @@ public class LoginRestController {
     @Autowired
     UserService userService;
 
+    /**
+        @author : liujx
+        @description : 注册
+        @date : Create in 下午8:46 2018/1/7
+
+    **/
     @PostMapping("/register")
     public Result register(HttpServletRequest request, String username, String password) throws ResultException {
         User user = userService.register(username, password);
@@ -29,6 +35,12 @@ public class LoginRestController {
         return result;
     }
 
+    /**
+        @author : liujx
+        @description : 登录
+        @date : Create in 下午8:45 2018/1/7
+
+    **/
     @PostMapping("/login")
     public Result login(HttpServletRequest request, String username, String password) throws ResultException {
         User user = userService.login(username, password);
@@ -39,6 +51,12 @@ public class LoginRestController {
         return result;
     }
 
+    /**
+        @author : liujx
+        @description : 注销
+        @date : Create in 下午8:45 2018/1/7
+
+    **/
     @PostMapping("/logout")
     public Result logout(HttpServletRequest request) {
         SessionUtil.removeUser(request);

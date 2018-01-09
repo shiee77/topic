@@ -1,42 +1,46 @@
 package com.sang.topic.common.entity;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "comment")
+@Document
 public class Comment {
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
 
-    @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private Integer userId;
+    private String  userId;
 
-    @Column(nullable = false)
-    private Integer postId;
+    private String  postId;
 
-    @Column(nullable = false)
     private Integer available;
 
-    @Column(nullable = false)
     private String username;
 
-    @Column(columnDefinition = "timestamp default '0000-00-00 00:00:00'", nullable = false)
     private Date createTime;
 
-    @Column(nullable = false)
     private Integer floor;
 
-    public Integer getId() {
+    private String parent ;
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -48,19 +52,19 @@ public class Comment {
         this.content = content;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public Integer getPostId() {
+    public String getPostId() {
         return postId;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(String postId) {
         this.postId = postId;
     }
 

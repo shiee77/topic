@@ -41,10 +41,10 @@ public class DataInitialize implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         logger.info("Data init");
         long count = userService.getCount();
+        System.out.println("count="+count);
         if (count <= 0) {
             logger.info("Begin Data init");
             User adminUser = new User();
-            adminUser.setId(1);
             adminUser.setUsername("admin");
             adminUser.setPassword(SecurityUtil.encryptPassword("admin"));
             adminUser.setRoleId(CommonConstants.Role.SUPER_ADMIN);
@@ -54,11 +54,11 @@ public class DataInitialize implements InitializingBean {
             testUser.setPassword(SecurityUtil.encryptPassword("123456"));
             userService.add(testUser);
 
-            Topic t1 = topicService.add("topic", 0);
+            Topic t1 = topicService.add("topic", "0");
             t1.setPageType(CommonConstants.PageType.SHOW_CHILD_TOPIC);
             topicService.save(t1);
 
-            Topic blog = topicService.add("博客", t1.getId());
+            Topic blog = topicService.add("市场1", t1.getId());
             blog.setSecNav(CommonConstants.SecNav.NONE);
             blog.setOrderType(CommonConstants.OrderType.CREATE_TIME_FIRST);
             blog.setPostShowTypes(TopicStringUtils.integerToString(
@@ -67,11 +67,11 @@ public class DataInitialize implements InitializingBean {
             topicService.save(blog);
             postService.add("第一篇博客标题", "第一篇博客内容", blog.getId(), adminUser);
 
-            Topic bbs = topicService.add("论坛", t1.getId());
+            Topic bbs = topicService.add("市场2", t1.getId());
             bbs.setPageType(CommonConstants.PageType.SHOW_CHILD_TOPIC);
             topicService.save(bbs);
 
-            List<String> list = Arrays.asList("闲聊", "技术", "游戏");
+            List<String> list = Arrays.asList("板块1", "板块2", "板块3");
             for (String name : list) {
                 try {
                     Topic t = topicService.add(name, bbs.getId());
@@ -79,7 +79,7 @@ public class DataInitialize implements InitializingBean {
                     int n = random.nextInt(4) + 1;
                     Post post = postService.add("文章标题["+t.getName()+"]","文章内容", t.getId(), adminUser);
                     for (int j = 1; j <= n + 18; j++) {
-                        commentService.add("评论" + j, post.getId(), adminUser);
+                        commentService.add("评论" + j, post.getId(),null, adminUser);
                     }
                 } catch (ResultException e) {
                     e.printStackTrace();

@@ -24,19 +24,19 @@ public class PostRestController {
     CommentService commentService;
 
     @GetMapping("/{postId}")
-    public Result get(@PathVariable Integer postId) throws ResultException {
+    public Result get(@PathVariable String postId) throws ResultException {
         Post post = postService.get(postId);
         return Result.success().add("post", post);
     }
 
     @GetMapping("/{postId}/c")
-    public Result get(@PathVariable Integer postId, Page page) {
+    public Result get(@PathVariable String postId, Page page) {
         List<Comment> comments = commentService.getByPostIdAndPage(postId, page);
         return Result.success().add("post", comments);
     }
 
     @PostMapping("")
-    public Result add(HttpServletRequest request, String title, String content, Integer topicId) throws ResultException {
+    public Result add(HttpServletRequest request, String title, String content, String topicId) throws ResultException {
         Post post = postService.add(title, content, topicId, SessionUtil.getUser(request));
         return Result.success().add("post", post);
     }

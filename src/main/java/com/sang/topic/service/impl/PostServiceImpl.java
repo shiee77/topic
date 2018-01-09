@@ -9,8 +9,8 @@ import com.sang.topic.common.entity.Topic;
 import com.sang.topic.common.entity.User;
 import com.sang.topic.common.exception.ResultException;
 import com.sang.topic.common.model.Page;
-import com.sang.topic.dao.PostRepository;
-import com.sang.topic.dao.TopicRepository;
+import com.sang.topic.repository.PostRepository;
+import com.sang.topic.repository.TopicRepository;
 import com.sang.topic.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -35,7 +35,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getByTopicId(Integer topicId, Page page) {
+    public List<Post> getByTopicId(String topicId, Page page) {
         Sort sort = null;
         Topic topic = topicRepository.findOne(topicId);
         if(topic.getOrderType() == CommonConstants.OrderType.CREATE_TIME_FIRST) {
@@ -49,7 +49,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post get(Integer id) throws ResultException {
+    public Post get(String id) throws ResultException {
         Post post = postRepository.findOne(id);
         if (post == null)
             throw new ResultException(MessageConstants.POST_NOT_FOUND, ResultConstants.NOT_FOUND);
@@ -58,7 +58,7 @@ public class PostServiceImpl implements PostService {
 
     @Transactional
     @Override
-    public Post add(String title, String content, Integer topicId, User user) throws ResultException {
+    public Post add(String title, String content, String topicId, User user) throws ResultException {
         if (user == null)
             throw new ResultException(MessageConstants.USER_LOGIN_REQUIRE);
         Post post = new Post();
@@ -70,6 +70,7 @@ public class PostServiceImpl implements PostService {
         post.setUserId(user.getId());
         post.setUsername(user.getUsername());
         post.setCreateTime(new Date());
+        post.setUpdateTime(new Date());
         postRepository.save(post);
         return post;
     }

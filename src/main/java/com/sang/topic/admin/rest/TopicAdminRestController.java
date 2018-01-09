@@ -23,17 +23,17 @@ public class TopicAdminRestController {
     }
 
     @PutMapping("/{topicId}")
-    public Result saveTopic(@PathVariable Integer topicId, Topic topic) throws ResultException {
+    public Result saveTopic(@PathVariable String topicId, Topic topic) throws ResultException {
         return Result.success().add("topic", topicService.save(topic));
     }
 
     @GetMapping("/{topicId}")
-    public Result get(@PathVariable Integer topicId) throws ResultException {
+    public Result get(@PathVariable String topicId) throws ResultException {
         return Result.success().add("topic", topicService.get(topicId));
     }
 
     @PostMapping("")
-    public Result add(Integer parentId, String name) throws ResultException {
+    public Result add(String parentId, String name) throws ResultException {
         return Result.success().add("topic", topicService.add(name, parentId));
     }
 }

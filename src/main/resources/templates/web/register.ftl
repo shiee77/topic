@@ -17,7 +17,7 @@
 					</div>
 					<form id="mainForm">
                         <@c.BSinput name="username" label="用户名" />
-                        <@c.BSinput name="pasword" type="password" label="密码" />
+                        <@c.BSinput name="password" type="password" label="密码" />
 						<button class="btn btn-default pull-right" type="button" onclick="register()">注册</button>
 					</form>
 				</div>

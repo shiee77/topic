@@ -44,10 +44,10 @@
 								<span>作者：<a href="/u/${post.userId}">${post.username}</a></span>
                             </#if>
                             <#if topicShowTypes?seq_contains(3)>
-								<span>创建时间：${post.createTime}</span>
+								<span>创建时间：${post.createTime?string("yyyy-MM-dd HH:mm:ss")}</span>
                             </#if>
                             <#if topicShowTypes?seq_contains(4)>
-								<span>最后回复时间：${post.updateTime}</span>
+								<span>最后回复时间：${post.updateTime?string("yyyy-MM-dd HH:mm:ss")}</span>
                             </#if>
 						</div>
 					</li>
@@ -57,6 +57,7 @@
         </#if>
         <#if childTopics??>
 			<div class="row">
+				<#--在这个位置需要将子模块增加进去-->
                 <#list childTopics as topic>
 					<div class="col-sm-6 col-md-4">
 						<div class="thumbnail">
@@ -77,7 +78,7 @@
         <#if Session.sessionUser?? && topicId?? && posts??>
 			<div class="column">
 				<div class="text-center">
-					<button type="button" class="btn btn-default" onclick="topicPost(${topicId})">发表新话题</button>
+					<button type="button" class="btn btn-default" onclick="topicPost('${topicId}')">发表新话题</button>
 				</div>
 			</div>
         </#if>

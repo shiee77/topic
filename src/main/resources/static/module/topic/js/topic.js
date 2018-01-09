@@ -129,12 +129,21 @@ function doTopicPost() {
 /**
  * 评论话题
  */
-function topicComment(postId) {
-    var modalId = "commentModal";
-    var title = "评论";
+function topicComment(postId,commentId,title,modalId) {
+    if( modalId === undefined || modalId === null || modalId === ''){
+        modalId = 'commentModal';
+    }
+    if(title === null || title === undefined || title === ''){
+        title = '评论';
+    }
+    var str = '<input type="hidden" name="postId" value="' + postId + '">';
+    if(commentId !== null && commentId !== undefined && commentId !== ''){
+        str += '<input type="hidden" name="commentId" value="' + commentId + '">';
+    }
     var body = '\
-        <form id="commentForm">\
-            <input type="hidden" name="postId" value="' + postId + '">\
+        <form id="commentForm">'+
+                str
+            +'\
             <div class="form-group">\
                 <label for="">内容</label>\
                 <textarea name="content" class="form-control" rows="5"></textarea>\

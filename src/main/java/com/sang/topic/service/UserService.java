@@ -14,7 +14,7 @@ public interface UserService {
 
     User add(User user);
 
-    User get(Integer id) throws ResultException;
+    User get(String id) throws ResultException;
 
     User getByUsername(String username);
 

@@ -15,7 +15,7 @@
 <div class="container">
 	<div id="main" class="wrapper col-md-9">
         <div class="jumbotron">
-            <h1>Topic2</h1>
+            <h1>首页</h1>
 		</div>
 	</div>
 </div>

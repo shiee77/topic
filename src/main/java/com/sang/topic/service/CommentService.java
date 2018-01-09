@@ -9,7 +9,7 @@ import com.sang.topic.common.model.Page;
 import java.util.List;
 
 public interface CommentService {
-    List<Comment> getByPostIdAndPage(Integer topicId, Page page);
+    List<Comment> getByPostIdAndPage(String topicId, Page page);
 
-    Comment add(String content, Integer postId, User user) throws ResultException;
+    Comment add(String content, String postId,String commentId, User user) throws ResultException;
 }

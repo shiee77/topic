@@ -1,4 +1,4 @@
-<#macro baseHtml title="topic2">
+<#macro baseHtml title="国泰论坛">
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,6 +23,7 @@
 <body>
 <div>
 	<div id="header">
+
         <@BSnav navs=topNav/>
 	</div>
 	<div id="content">
@@ -30,7 +31,7 @@
 	</div>
 	<div id="footer">
 		<div class="container">
-			<h4><span><a href="https://github.com/sggzh/topic2">GitHub</a></span></h4>
+
 		</div>
 	</div>
 </div>
@@ -51,7 +52,7 @@
 <nav class="navbar-default">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="${basePath}/">Topic2</a>
+			<a class="navbar-brand" href="${basePath}/">首页</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
@@ -87,11 +88,13 @@
 <#macro BSnav2 navs topicId=0>
 <ul class="nav nav-pills">
     <#list navs as nav>
+		<#--索引值大于或等于6，则跳出循环-->
         <#if nav?index gte 6><#break></#if>
 		<li role="presentation" <#if nav.id == topicId>class="active"</#if>>
 			<a href="${basePath}/t/${nav.id}">${nav.name}</a>
 		</li>
     </#list>
+
 </ul>
 </#macro>
 

@@ -23,12 +23,12 @@ public class UserAdminRestController {
     }
 
     @GetMapping("/{userId}")
-    public Result get(@PathVariable Integer userId) throws ResultException {
+    public Result get(@PathVariable String userId) throws ResultException {
         return Result.success().add("user", userService.get(userId));
     }
 
     @PutMapping("/{userId}")
-    public Result save(@PathVariable Integer userId, User user) throws ResultException {
+    public Result save(@PathVariable String userId, User user) throws ResultException {
         return Result.success().add("user", userService.save(user));
     }
 

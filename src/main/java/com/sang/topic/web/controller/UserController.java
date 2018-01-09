@@ -17,8 +17,15 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+        @author : liujx
+        @description : 进入用户信息页面
+        @// TODO: 2018/1/7 未完成此页面功能，需要添加列表展示相关的浏览记录信息、回复记录信息等等
+        @date : Create in 下午8:52 2018/1/7
+
+    **/
     @GetMapping("/{userId}")
-    public ModelAndView index(@PathVariable Integer userId, Map<String, Object> model) throws ResultException {
+    public ModelAndView index(@PathVariable String userId, Map<String, Object> model) throws ResultException {
         model.put("user", userService.get(userId));
         return new ModelAndView("web/user");
     }
