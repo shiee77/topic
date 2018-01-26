@@ -129,6 +129,201 @@ function doTopicPost() {
     });
 }
 
+function getSearchInfo(){
+    var str = window.location.href;
+    window.location.href =  str.substring(0,str.indexOf('?')  )  + '?searchInfo=' + $("#Popover-15392-80405-toggle").val() + '';
+}
+
+
+/**
+ * 删除评论
+ */
+function delPost(postId) {
+    var modalId = "delPost";
+    var title = "删除帖子";
+    if( postId === undefined || postId === null || postId === ''){
+        return ;
+    }
+    var body = '\
+        <form id="commentForm">'
+        + '<input type="hidden" name="postId" value="' + postId + '">'
+        +'  <div class="form-group">\
+               <span>确认删除此帖子吗?</span>\
+            </div>\
+        </form>\
+        ';
+    var footer = '<button type="button" class="btn btn-primary" onclick="doDelPost(\''+modalId+'\')">删除</button>';
+    var $modal = topicModal(modalId, title, body, footer);
+    $modal.modal();
+}
+
+/**
+ * 执行删除帖子
+ */
+function doDelPost(modalId) {
+    var url = basePath + "/rest/p/del";
+    $.post(url, $("#commentForm").serialize(), function (result) {
+        if (result.status == 0) {
+            topicAlert({
+                result: "success",
+                message: "删除成功",
+                $parent: $("#"+modalId+" .modal-body"),
+                success: function () {
+                    window.history.back();location.reload();
+                }
+            });
+        } else {
+            topicAlert({
+                result: "danger",
+                message: result.message,
+                $parent: $("#"+ modalId +" .modal-body")
+            });
+        }
+    });
+}
+
+
+/**
+ * 取消点赞
+ */
+function cancelTopicLiked(postId) {
+    var modalId = "cancelTopicLiked";
+    var title = "取消点赞";
+    if( postId === undefined || postId === null || postId === ''){
+        return ;
+    }
+    var body = '\
+        <form id="commentForm">'
+        + '<input type="hidden" name="postId" value="' + postId + '">'
+        +'  <div class="form-group">\
+               <span>确定取消点赞吗?</span>\
+            </div>\
+        </form>\
+        ';
+    var footer = '<button type="button" class="btn btn-primary" onclick="doCancelTopicLiked(\''+modalId+'\')">确定</button>';
+    var $modal = topicModal(modalId, title, body, footer);
+    $modal.modal();
+}
+
+/**
+ * 执行取消点赞
+ */
+function doCancelTopicLiked(modalId) {
+    var url = basePath + "/rest/p/cancelLiked";
+    $.post(url, $("#commentForm").serialize(), function (result) {
+        if (result.status == 0) {
+            topicAlert({
+                result: "success",
+                message: "取消点赞成功",
+                $parent: $("#"+modalId+" .modal-body"),
+                success: function () {
+                    location.reload();
+                }
+            });
+        } else {
+            topicAlert({
+                result: "danger",
+                message: result.message,
+                $parent: $("#"+ modalId +" .modal-body")
+            });
+        }
+    });
+}
+
+/**
+ * 点赞
+ */
+function topicLiked(postId) {
+    var modalId = "postLiked";
+    var title = "点赞帖子";
+    if( postId === undefined || postId === null || postId === ''){
+        return ;
+    }
+    var body = '\
+        <form id="commentForm">'
+        + '<input type="hidden" name="postId" value="' + postId + '">'
+          +'  <div class="form-group">\
+               <span>感谢您的赞赏!</span>\
+            </div>\
+        </form>\
+        ';
+    var footer = '<button type="button" class="btn btn-primary" onclick="doTopicLiked(\''+modalId+'\')">确定</button>';
+    var $modal = topicModal(modalId, title, body, footer);
+    $modal.modal();
+}
+
+/**
+ * 执行点赞
+ */
+function doTopicLiked(modalId) {
+    var url = basePath + "/rest/p/liked";
+    $.post(url, $("#commentForm").serialize(), function (result) {
+        if (result.status == 0) {
+            topicAlert({
+                result: "success",
+                message: "点赞成功",
+                $parent: $("#"+modalId+" .modal-body"),
+                success: function () {
+                    location.reload();
+                }
+            });
+        } else {
+            topicAlert({
+                result: "danger",
+                message: result.message,
+                $parent: $("#"+ modalId +" .modal-body")
+            });
+        }
+    });
+}
+
+/**
+ * 删除评论
+ */
+function delComment(commentId) {
+    var modalId = "delComment";
+    var title = "删除评论";
+    if( commentId === undefined || commentId === null || commentId === ''){
+        return ;
+    }
+    var body = '\
+        <form id="commentForm">'
+        + '<input type="hidden" name="commentId" value="' + commentId + '">'
+          +'  <div class="form-group">\
+               <span>确认删除此条评论吗?</span>\
+            </div>\
+        </form>\
+        ';
+    var footer = '<button type="button" class="btn btn-primary" onclick="doDelComment(\''+modalId+'\')">删除</button>';
+    var $modal = topicModal(modalId, title, body, footer);
+    $modal.modal();
+}
+
+/**
+ * 执行删除评论
+ */
+function doDelComment(modalId) {
+    var url = basePath + "/rest/c/del";
+    $.post(url, $("#commentForm").serialize(), function (result) {
+        if (result.status == 0) {
+            topicAlert({
+                result: "success",
+                message: "删除成功",
+                $parent: $("#"+modalId+" .modal-body"),
+                success: function () {
+                    location.reload();
+                }
+            });
+        } else {
+            topicAlert({
+                result: "danger",
+                message: result.message,
+                $parent: $("#"+ modalId +" .modal-body")
+            });
+        }
+    });
+}
+
 /**
  * 评论话题
  */
@@ -153,14 +348,13 @@ function topicComment(postId,commentId,title,modalId) {
             </div>\
         </form>\
         ';
-    var footer = '<button type="button" class="btn btn-primary" onclick="doTopicComment()">发表</button>';
+    var footer = '<button type="button" class="btn btn-primary" onclick="doTopicComment(\''+modalId+'\')">发表</button>';
     var $modal = topicModal(modalId, title, body, footer);
     $modal.modal();
 }
 
-function doTopicComment() {
+function doTopicComment(modalId) {
     var url = basePath + "/rest/c";
-    debugger;
     var str = $("#commentForm").find(".form-control").val();
     str = str.replace(/\n/g,"<br/>").replace(/\s/g,"&nbsp;");
     $("#commentForm").find(".form-control").val(str);
@@ -169,7 +363,7 @@ function doTopicComment() {
             topicAlert({
                 result: "success",
                 message: "发表成功",
-                $parent: $("#commentModal .modal-body"),
+                $parent: $("#"+modalId+" .modal-body"),
                 success: function () {
                     location.reload();
                 }
@@ -178,8 +372,11 @@ function doTopicComment() {
             topicAlert({
                 result: "danger",
                 message: result.message,
-                $parent: $("#commentModal .modal-body")
+                $parent: $("#"+modalId+" .modal-body")
             });
         }
     });
 }
+
+
+

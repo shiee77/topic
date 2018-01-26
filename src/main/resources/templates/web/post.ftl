@@ -22,7 +22,8 @@
                 </span>
 			</div>
 			<div class="panel-body">
-				<span style="color: #8590a6;font-size:14px;">0 人赞同了该帖子</span>
+				<span style="color: #8590a6;font-size:14px;">浏览(${post.readCount ! '0'})</span>
+				<span style="color: #8590a6;font-size:14px;">赞同(${post.likedCount ! '0'})</span>
 				<div class="pre">${post.content}</div>
 			</div>
 			<div class="panel-footer" style="padding: 0.1rem 1rem;">
@@ -30,10 +31,20 @@
                     <#if Session.sessionUser??>
 						<button type="button" class="btn btn-default btn-sm" onclick="topicComment('${postId}')">评论
 						</button>
-                        <button type="button" class="btn btn-default btn-sm" >点赞
-                        </button>
-                        <button type="button" class="btn btn-default btn-sm" >举报
-                        </button>
+
+						<#if isUserLiked??  && (isUserLiked == 0  ) >
+                            <button type="button" class="btn btn-default btn-sm" onclick="topicLiked('${postId}')">点赞
+							</button>
+						<#else >
+                            <button type="button" class="btn btn-default btn-sm" onclick="cancelTopicLiked('${postId}')">取消点赞
+							</button>
+						</#if>
+
+
+						<#if Session.sessionUser.id = post.userId>
+							<button type="button" class="btn btn-default btn-sm"  onclick="delPost('${post.id}')">删除
+							</button>
+						</#if>
                     </#if>
 				</div>
 
@@ -42,8 +53,11 @@
 		<ul class="list-group">
             <#list comments as comment>
 				<li class="list-group-item">
-					#${comment.floor} - <a href="${basePath}/u/${comment.userId}">${comment.username}</a>
-					<#if comment.parent?? && comment.parentUserName??> 回复 <a href="${basePath}/u/${comment.parentUserId}">${comment.parentUserName}</a> </#if>
+					#${comment.floor} - <a href="${basePath}/u/${comment.userId}">
+									${comment.username}
+										<#if comment.userId == post.userId  > (作者)</#if>
+									</a>
+					<#if comment.parent?? && comment.parentUserName??> 回复 <a href="${basePath}/u/${comment.parentUserId}">${comment.parentUserName} <#if comment.userId == post.userId  > (作者)</#if></a> </#if>
 
 					<div class="pre">${comment.content}</div>
 				    <div class="col-md-12"  >
@@ -56,10 +70,11 @@
 							<#if Session.sessionUser??>
 								<button type="button" class="btn btn-default btn-sm" onclick="topicComment('${postId}','${comment.id}','回复','topicCommentRe')">回复
 								</button>
-								<button type="button" class="btn btn-default btn-sm" >点赞
-								</button>
-								<button type="button" class="btn btn-default btn-sm" >举报
-								</button>
+
+								<#if Session.sessionUser.id = comment.userId>
+									<button type="button" class="btn btn-default btn-sm"  onclick="delComment('${comment.id}')">删除
+									</button>
+								</#if>
 							</#if>
 						</div>
                       </div>

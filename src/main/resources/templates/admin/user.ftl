@@ -7,7 +7,7 @@
 		<table class="table table-bordered">
 			<thead>
 			<tr>
-				<th style="width: 10px">#</th>
+				<th style="width: 10px">编号</th>
 				<th>用户名</th>
 				<th>角色</th>
 				<th>创建时间</th>
@@ -31,7 +31,7 @@
 					</td>
 					<td>${user.createTime?string("yyyy-MM-dd HH:mm:ss")}</td>
 					<td>
-						<button class="btn btn-sm btn-primary" onclick="showUserDetail(${user.id})">查看详情</button>
+						<button class="btn btn-sm btn-primary" onclick="showUserDetail('${user.id}')">查看详情</button>
 					</td>
 				</tr>
                 </#list>

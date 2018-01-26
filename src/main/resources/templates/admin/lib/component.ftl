@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Topic控制台</title>
+	<title>国泰论坛控制台</title>
 
 	<link href="${basePath}/module/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${basePath}/module/AdminLTE/css/AdminLTE.min.css" rel="stylesheet">
@@ -74,9 +74,9 @@
 <#macro adminHeader>
 <header class="main-header">
 	<a href="#" class="logo">
-		<span class="logo-mini"><b>T</b>2</span>
+		<span class="logo-mini"><b>国泰</b></span>
 		<!-- logo for regular state and mobile devices -->
-		<span class="logo-lg"><b>Topic</b>2</span>
+		<span class="logo-lg"><b>国泰论坛后台</b></span>
 	</a>
 
 	<!-- Header Navbar -->
